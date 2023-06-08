@@ -8,10 +8,7 @@ async function getProducts() {
 
 async function getProduct(params) {
   return fetch(`https://dummyjson.com/products/${params.id}`, { next: { revalidate: 60 } })
-    .then(res => {
-      console.log(JSON.stringify(res));
-      return res.json();
-    });
+    .then(res => res.json());
 }
 
 export async function generateStaticParams() {
