@@ -1,17 +1,15 @@
-import { nextFetch } from "../../../lib/fetch";
-
 export const runtime = 'edge';
 
 const productsUrl = 'https://dummyjson.com/products';
 
 async function getProducts() {
-  return nextFetch(productsUrl, { next: { revalidate: 60 } })
+  return fetch(productsUrl, { next: { revalidate: 60 } })
     .then(res => res.json())
     .then(data => data.products);
 }
 
 async function getProduct(params) {
-  return nextFetch(`${productsUrl}/${params.id}`, { next: { revalidate: 60 } })
+  return fetch(`${productsUrl}/${params.id}`, { next: { revalidate: 60 } })
     .then(res => res.json());
 }
 
